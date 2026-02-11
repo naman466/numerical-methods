@@ -37,7 +37,7 @@ class FP32{
         bool isZero() const;
         bool isSubnormal() const;
         bool isNormal() const; 
-        bool isInfinite() const;
+        bool isInfinity() const;
         bool isNaN() const;
         bool isFinite() const;
         bool isNegative() const;
