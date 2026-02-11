@@ -43,6 +43,9 @@ FP32 FP32::epsilon() {
     return FP32(0x34000000); // exponent = 104 (127-23), mantissa = 0
 }
 
+FP32 FP32::infinity(bool negative) {
+    return FP32((negative ? SIGN_MASK : 0) | EXPONENT_MASK);
+}
 bool FP32::sign() const {
     return (bits_ & SIGN_MASK) != 0;
 }
