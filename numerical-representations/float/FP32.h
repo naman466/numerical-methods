@@ -17,6 +17,7 @@ class FP32{
 
         static FP32 fromBits(uint32_t bits);
         static FP32 zero(bool negative = false);
+        static FP32 infinity(bool negative = false);
         static FP32 nan();
         static FP32 epsilon();
 
