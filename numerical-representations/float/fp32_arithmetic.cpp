@@ -22,6 +22,7 @@ uint32_t FP32::roundToNearest(uint64_t value, int shift) {
     return static_cast<uint32_t>(result);
 }
 
+// TODO: BUG - normalization logic is zeroing out results
 FP32 FP32::normalize(bool sign, int exp, uint64_t significand) {
     if (significand == 0){
         return FP32::zero(sign);
