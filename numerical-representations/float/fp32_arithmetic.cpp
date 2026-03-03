@@ -54,6 +54,17 @@ FP32 FP32::normalize(bool sign, int exp, uint64_t significand) {
         uint32_t mant = roundToNearest(significand, denorm_shift + shift);
         return FP32(packBits(sign, 0, mant));
     }
+
+    // normal case
+
+    // round to 23 mantissa bits
+    uint32_t mant = roundToNearest(significand, shift);
+
+    // remove implicit leading 1
+    mant &= MANTISSA_MASK;
+
+    // pack and return
+    return FP32(packBits(sign, static_cast<uint8_t>(exp), mant));
 }
 
 FP32 FP32::addImpl(const FP32& a, const FP32& b) {
@@ -236,14 +247,14 @@ FP32 FP32::operator/(const FP32& other) const {
     if (other.isNormal()) sig_b |= (1ULL << MANTISSA_BITS);
     
     // shift dividend left for precision
-    sig_a <<= MANTISSA_BITS;
+    sig_a <<= (MANTISSA_BITS + 3); // extra bits for rounding and normalization
     
     // divide significands
     uint64_t result_sig = sig_a / sig_b;
     
    
     // result_exp = exp_a - exp_b + BIAS
-    int result_exp = exp_a - exp_b + EXPONENT_BIAS;
+    int result_exp = exp_a - exp_b + EXPONENT_BIAS - 3; // adjust for extra shift
     
     // normalize
     return normalize(result_sign, result_exp, result_sig);
