@@ -38,9 +38,8 @@ FP32 FP32::nan() {
 }
 
 FP32 FP32::epsilon() {
-    // smallest value such that 1.0 + epsilon != 1.0
-    // for FP32: 2^-23
-    return FP32(0x34000000); // exponent = 104 (127-23), mantissa = 0
+    // using fromBits guarantees the uint32_t constructor is used
+    return FP32::fromBits(0x34000000u); 
 }
 
 FP32 FP32::infinity(bool negative) {
