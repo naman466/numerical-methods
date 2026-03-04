@@ -50,6 +50,7 @@ $$V = (-1)^S \times (1.M) \times 2^{E - 127}$$
 
 ## Project Structure
 
+```
 .
 ├── FP32.h
 ├── Makefile
@@ -60,7 +61,7 @@ $$V = (-1)^S \times (1.M) \times 2^{E - 127}$$
 ├── fp32_comparison.cpp
 ├── fp32_io.cpp
 └── fp32_test.cpp
-
+```
 ## Building
 
 ### Prerequisites
@@ -102,3 +103,4 @@ The included tests check:
 - [IEEE-754 Standard](https://en.wikipedia.org/wiki/IEEE_754)
 - [What Every Computer Scientist Should Know About Floating-Point Arithmetic](https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html)
 - [Floating Point Demystified](http://www.volkerschatz.com/science/float.html)
+
